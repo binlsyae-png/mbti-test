@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>산리오 프렌즈 MBTI 성격 테스트 🎀 | 헬로키티 & 마이멜로디 감성</title>
+  <meta name="description" content="나와 가장 닮은 산리오 캐릭터는 누구일까? 12가지 질문으로 알아보는 헬로키티, 마이멜로디 산리오 MBTI 성격 유형 테스트!">
+  <meta property="og:title" content="산리오 프렌즈 MBTI 성격 테스트 🎀">
+  <meta property="og:description" content="나와 꼭 닮은 산리오 캐릭터는 누구일까? 지금 바로 테스트해보세요!">
+  <meta property="og:image" content="assets/images/cover.jpg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 배경 떠다니는 파티클 (하트, 리본, 딸기, 별, 꽃) -->
+  <div class="bg-particles" id="bg-particles" aria-hidden="true"></div>
+
+  <!-- 앱 메인 컨테이너 -->
+  <main class="app-container" id="app">
+    <!-- 상단 레이스 장식 -->
+    <div class="lace-top"></div>
+
+    <!-- 상단 헤더 바 -->
+    <header class="top-bar">
+      <div class="sanrio-tag-badge">
+        <span>🎀</span>
+        <span>Sanrio Friends MBTI</span>
+      </div>
+      <button type="button" class="sound-toggle-btn" id="sound-toggle-btn" title="효과음 켜기/끄기" aria-label="효과음 토글">
+        🔔
+      </button>
+    </header>
+
+    <!-- 1. 시작 화면 -->
+    <section class="screen active" id="screen-start">
+      <div class="start-content">
+        <div class="title-badge-wrap">
+          <span>✨</span>
+          <span>헬로키티 & 마이멜로디 에디션</span>
+          <span>✨</span>
+        </div>
+        <h1 class="main-title">산리오 캐릭터<br>MBTI 테스트</h1>
+        <p class="sub-title">나와 마음이 꼭 닮은 산리오 프렌즈는 누구일까? 🍓</p>
+
+        <div class="cover-image-box">
+          <img src="assets/images/cover.jpg" alt="헬로키티와 마이멜로디가 함께 있는 일러스트">
+          <div class="cover-ribbon-deco">🎀</div>
+        </div>
+
+        <div class="info-cards-row">
+          <div class="info-mini-card">
+            <div class="icon">📝</div>
+            <div class="label">질문 수</div>
+            <div class="val">총 12문항</div>
+          </div>
+          <div class="info-mini-card">
+            <div class="icon">⏱️</div>
+            <div class="label">소요 시간</div>
+            <div class="val">약 2분</div>
+          </div>
+          <div class="info-mini-card">
+            <div class="icon">💖</div>
+            <div class="label">캐릭터</div>
+            <div class="val">16가지 유형</div>
+          </div>
+        </div>
+
+        <button type="button" class="btn-pink-primary" id="btn-start">
+          <span>테스트 시작하기</span>
+          <span>🎀</span>
+        </button>
+
+        <p class="footer-text">© 2026 Sanrio Friends MBTI Fan Project</p>
+      </div>
+    </section>
+
+    <!-- 2. 질문 화면 -->
+    <section class="screen" id="screen-quiz">
+      <div class="quiz-header">
+        <div class="quiz-nav-row">
+          <button type="button" class="quiz-back-btn" id="btn-quiz-back">
+            <span>←</span> 이전 질문
+          </button>
+          <div class="quiz-counter" id="quiz-counter">
+            Q.01 <span>/ 12</span>
+          </div>
+        </div>
+
+        <!-- 진행 상황 프로그레스 바 -->
+        <div class="progress-track-wrapper">
+          <div class="progress-track" role="progressbar" aria-valuemin="1" aria-valuemax="12" aria-valuenow="1" id="quiz-progress-bar">
+            <div class="progress-fill" id="progress-fill">
+              <span class="progress-ribbon-runner" id="progress-runner">🎀</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 질문 카드 -->
+      <article class="question-card" id="question-card">
+        <span class="question-dimension-tag" id="question-dimension-tag">외향 vs 내향</span>
+        <h2 class="question-text" id="question-text">질문 텍스트가 여기에 나타납니다.</h2>
+        <p class="question-subtext" id="question-subtext">상황 설명 텍스트</p>
+      </article>
+
+      <!-- 2개의 선택지 버튼 -->
+      <div class="options-list" id="options-container">
+        <!-- JS로 동적 렌더링 -->
+      </div>
+    </section>
+
+    <!-- 3. 결과 분석 로딩 화면 -->
+    <section class="screen" id="screen-loading">
+      <div class="loading-content">
+        <div class="loading-anim-box">
+          <div class="loading-ribbon-spinner"></div>
+          <span class="loading-heart">💖</span>
+        </div>
+        <h2 class="loading-title">결과를 계산하고 있어요!</h2>
+        <p class="loading-desc">마법의 핑크 리본으로 당신의 성향을 찾는 중... 🎀✨</p>
+      </div>
+    </section>
+
+    <!-- 4. 결과 화면 -->
+    <section class="screen" id="screen-result">
+      <div class="result-header-text">
+        <span class="result-header-badge">✨ MBTI 결과 발표 ✨</span>
+        <h2 style="font-size: 1.15rem; color: #4a3e3d; font-weight: 800;">나와 꼭 닮은 산리오 캐릭터는?</h2>
+      </div>
+
+      <!-- 메인 결과 포토카드 -->
+      <div class="result-main-card" id="result-main-card">
+        <div class="result-card-banner">
+          <div class="result-mbti-type" id="res-mbti">ESFJ</div>
+          <h3 class="result-char-name" id="res-char-name">헬로키티 (Hello Kitty)</h3>
+          <div class="result-char-nickname" id="res-char-nickname">사랑과 배려가 넘치는 다정다감 천사</div>
+
+          <div class="result-avatar-box">
+            <img src="assets/images/cover.jpg" alt="캐릭터 대표 이미지" id="res-avatar-img">
+          </div>
+
+          <div class="result-quote-box" id="res-quote">
+            "친구는 많을수록 좋아! 언제나 네 곁에 있어줄게 리본~🎀"
+          </div>
+        </div>
+
+        <div class="result-card-body">
+          <!-- 해시태그 목록 -->
+          <div class="tags-cloud" id="res-tags">
+            <!-- 동적 삽입 -->
+          </div>
+
+          <!-- 특징 목록 -->
+          <div class="section-subtitle">
+            <span>🍓</span>
+            <span>나의 산리오 모먼트 & 특징</span>
+          </div>
+          <ul class="traits-list" id="res-traits">
+            <!-- 동적 삽입 -->
+          </ul>
+
+          <!-- 차원별 비율 미니 차트 -->
+          <div class="dimension-bars-card">
+            <div class="section-subtitle" style="font-size: 0.95rem; margin-bottom: 8px;">
+              <span>📊</span>
+              <span>나의 성향 분석 그래프</span>
+            </div>
+            
+            <div class="dimension-row">
+              <div class="dim-labels">
+                <span id="label-e">외향(E) 0%</span>
+                <span id="label-i">내향(I) 0%</span>
+              </div>
+              <div class="dim-bar-track">
+                <div class="dim-bar-fill" id="bar-ei" style="width: 50%;"></div>
+              </div>
+            </div>
+
+            <div class="dimension-row">
+              <div class="dim-labels">
+                <span id="label-s">감각(S) 0%</span>
+                <span id="label-n">직관(N) 0%</span>
+              </div>
+              <div class="dim-bar-track">
+                <div class="dim-bar-fill" id="bar-sn" style="width: 50%;"></div>
+              </div>
+            </div>
+
+            <div class="dimension-row">
+              <div class="dim-labels">
+                <span id="label-t">사고(T) 0%</span>
+                <span id="label-f">감정(F) 0%</span>
+              </div>
+              <div class="dim-bar-track">
+                <div class="dim-bar-fill" id="bar-tf" style="width: 50%;"></div>
+              </div>
+            </div>
+
+            <div class="dimension-row">
+              <div class="dim-labels">
+                <span id="label-j">판단(J) 0%</span>
+                <span id="label-p">인식(P) 0%</span>
+              </div>
+              <div class="dim-bar-track">
+                <div class="dim-bar-fill" id="bar-jp" style="width: 50%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 궁합 매칭 -->
+          <div class="section-subtitle">
+            <span>💕</span>
+            <span>산리오 친구들과의 케미</span>
+          </div>
+          <div class="chemistry-grid">
+            <div class="chemistry-box best">
+              <div>
+                <span class="chem-badge best">찰떡궁합 💖</span>
+                <div class="chem-char-name" id="res-best-char">마이멜로디</div>
+                <div class="chem-mbti" id="res-best-mbti">ISFP</div>
+              </div>
+              <div class="chem-desc" id="res-best-desc">서로의 다정함에 따스하게 힐링받아요</div>
+            </div>
+
+            <div class="chemistry-box worst">
+              <div>
+                <span class="chem-badge worst">주의궁합 🫧</span>
+                <div class="chem-char-name" id="res-worst-char">한교동</div>
+                <div class="chem-mbti" id="res-worst-mbti">INTP</div>
+              </div>
+              <div class="chem-desc" id="res-worst-desc">서로 다른 표현 방식에 오해가 생길 수 있어요</div>
+            </div>
+          </div>
+
+          <!-- 나와 잘 맞는 성격 상세 설명 카드 -->
+          <div class="compatible-detail-card" id="compatible-detail-card">
+            <div class="section-subtitle">
+              <span>💖</span>
+              <span>나와 잘 맞는 찰떡 성격 탐구</span>
+            </div>
+            <div class="compat-header-banner">
+              <h4 class="compat-title" id="compat-title"></h4>
+              <p class="compat-summary" id="compat-summary"></p>
+            </div>
+            <div class="compat-traits-box">
+              <div class="compat-box-label">✨ 이런 성향의 사람과 있을 때 가장 행복해요!</div>
+              <ul class="compat-traits-list" id="compat-traits-list">
+                <!-- 동적 렌더링 -->
+              </ul>
+            </div>
+            <div class="compat-synergy-box">
+              <div class="synergy-badge">🎀 둘만의 찰떡 시너지 케미</div>
+              <p class="synergy-text" id="compat-synergy-text"></p>
+            </div>
+          </div>
+
+          <!-- 액션 버튼들 -->
+          <div class="result-actions">
+            <button type="button" class="btn-pink-primary" id="btn-restart">
+              <span>다시 테스트하기</span>
+              <span>🔄</span>
+            </button>
+            <button type="button" class="btn-secondary" id="btn-share-link">
+              <span>결과 링크 복사하기</span>
+              <span>🔗</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <p class="footer-text">친구들에게도 링크를 공유해 산리오 유형을 맞춰보세요! 🎀</p>
+    </section>
+  </main>
+
+  <!-- 토스트 알림 메시지 -->
+  <div class="toast-msg" id="toast-msg">링크가 클립보드에 복사되었어요! 🎀</div>
+
+  <!-- 스크립트 연결 -->
+  <script src="questions.js"></script>
+  <script src="results.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
